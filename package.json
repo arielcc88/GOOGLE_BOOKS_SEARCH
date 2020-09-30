@@ -1,0 +1,19 @@
+{
+  "name": "google_books_search",
+  "version": "1.0.0",
+  "description": "dynamic react-express-mongo application for book search",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arielcc88/GOOGLE_BOOKS_SEARCH.git"
+  },
+  "author": "Ariel Cuesta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arielcc88/GOOGLE_BOOKS_SEARCH/issues"
+  },
+  "homepage": "https://github.com/arielcc88/GOOGLE_BOOKS_SEARCH#readme"
+}
