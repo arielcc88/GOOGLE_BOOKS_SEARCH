@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/arielcc88/GOOGLE_BOOKS_SEARCH/issues"
   },
-  "homepage": "https://github.com/arielcc88/GOOGLE_BOOKS_SEARCH#readme"
+  "homepage": "https://github.com/arielcc88/GOOGLE_BOOKS_SEARCH#readme",
+  "dependencies": {
+    "mongoose": "^5.10.7"
+  }
 }
