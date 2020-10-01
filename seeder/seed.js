@@ -20,7 +20,7 @@ let bookSeed = [
 db.Book.deleteMany({})
   .then(() => db.Book.collection.insertMany(bookSeed))
   .then(data => {
-    console.log(data.result.n + " DB Seeded!");
+    console.log(data.result.n + " documents successfully seeded!");
     //process.exit(0);
   })
   .catch(err => {
