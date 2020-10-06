@@ -4,10 +4,10 @@ export const initialState = {
     isFetchingBooks: false,
     books: [],
     error: ""
-}
+};
 
 export default (state = initialState, action) => {
-    switch (action) {
+    switch (action.type) {
         case BOOK_DBSEARCH_REQUEST:
             return {...state, isFetchingBooks: true, books: [], error: ""}
 
@@ -18,6 +18,6 @@ export default (state = initialState, action) => {
             return {...state, isFetchingBooks: false, books: [], error: action.payload}
     
         default:
-            break;
+            return state;
     }
-}
+};

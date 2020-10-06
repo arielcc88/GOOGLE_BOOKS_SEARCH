@@ -8,23 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-// importing search form component
 import SearchForm from "../../components/search-form/SearchForm.component";
 import BookCard from "../../components/book-card/BookCard.component";
+import { getLastBooks } from "../../utils/helpers";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
+// CSS for Search view home page
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -57,9 +45,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-export default function Album() {
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="/">
+        Google Search Book App
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+
+
+export default function HomePage(props) {
   const classes = useStyles();
 
   return (
@@ -67,10 +69,12 @@ export default function Album() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <MenuBookIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Google Books Search
-          </Typography>
+          {/* <Link color="inherit" href="/"> */}
+            <MenuBookIcon className={classes.icon} />
+            <Typography variant="h6" color="inherit" noWrap>
+              Google Books Search
+            </Typography>
+          {/* </Link> */}
         </Toolbar>
       </AppBar>
       <main>
@@ -93,10 +97,12 @@ export default function Album() {
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
+          <Typography component="h1" variant="h4" align="left" color="textSecondary" gutterBottom>
+            Recently Saved Books
+          </Typography>
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <BookCard key={card} />
+            {getLastBooks(props.books, 5).map((book, index) => (
+              <BookCard key={index} book={book}/>
             ))}
           </Grid>
         </Container>

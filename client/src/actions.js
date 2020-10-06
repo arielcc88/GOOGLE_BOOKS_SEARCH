@@ -25,7 +25,7 @@ export const getAllSavedBooks = () => {
         });
       //use axios to query REST api
       axios
-        .post("/api/books")
+        .get("/api/books")
         .then( (response) => {
           //if request is successful, update books state
           if(response.status === 200){
