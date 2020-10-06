@@ -1,14 +1,15 @@
 import { BOOK_DBSEARCH_REQUEST, BOOK_DBSEARCH_SUCCESS, BOOK_DBSEARCH_FAILURE } from "./constants";
+import { BOOK_DBDELETE_REQUEST, BOOK_DBDELETE_SUCCESS, BOOK_DBDELETE_FAILURE } from "./constants";
 import axios from "axios";
 
-//action: LOGIN_SUCCESS once backend call is successfull
+//action: BOOK_DBSEARCH_SUCCESS once backend call is successfull
 const searchSuccess = (savedBooks) => ({
     type:    BOOK_DBSEARCH_SUCCESS,
     isFetchingBooks: false,
     payload: savedBooks,
   });
   
-  //action: LOGIN_FAILURE if backend call is unsuccessful
+  //action: BOOK_DBSEARCH_FAILURE if backend call is unsuccessful
   const searchFailed = (error) => ({
     type:    BOOK_DBSEARCH_FAILURE,
     isFetchingBooks: false,
@@ -37,4 +38,8 @@ export const getAllSavedBooks = () => {
         });
     }
   }
+
+
+  // DB deletion
+  const removeSuccess = ()
 
