@@ -4,14 +4,14 @@ import axios from "axios";
 //action: LOGIN_SUCCESS once backend call is successfull
 const searchSuccess = (savedBooks) => ({
     type:    BOOK_DBSEARCH_SUCCESS,
-    isFetchingAuth: false,
+    isFetchingBooks: false,
     payload: savedBooks,
   });
   
   //action: LOGIN_FAILURE if backend call is unsuccessful
   const searchFailed = (error) => ({
     type:    BOOK_DBSEARCH_FAILURE,
-    isFetchingAuth: false,
+    isFetchingBooks: false,
     payload: error,
   });
 

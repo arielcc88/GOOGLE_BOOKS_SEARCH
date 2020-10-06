@@ -84,7 +84,6 @@ export default function Album() {
                 A web application to help you find information about any book - using the powerful
                 Google Books API.
                 Type it, Find it, Save it.
-                Yes, keep books of your liking on your Saved List to consult later.
             </Typography>
             <Grid container spacing={5} justify="center">
               <Grid item xs={12}>
