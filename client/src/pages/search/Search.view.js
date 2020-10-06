@@ -102,7 +102,7 @@ export default function HomePage(props) {
           </Typography>
           <Grid container spacing={4}>
             {getLastBooks(props.books, 5).map((book, index) => (
-              <BookCard key={index} book={book}/>
+              <BookCard key={index} book={book} isSaved={true}/>
             ))}
           </Grid>
         </Container>

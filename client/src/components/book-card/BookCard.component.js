@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,9 +27,39 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+const conditionalActionRendering = (isSaved, book) => {
+  if(isSaved){
+    return (
+      <CardActions>
+        <Link color="inherit" href={book.link} target="_blank" rel="noopener">
+          <Button size="small" color="primary">
+            View
+          </Button>
+        </Link>
+        <Button size="small" color="primary">
+            Remove
+        </Button>
+      </CardActions>
+    )
+  }
+  else{
+    return (
+      <CardActions>
+        <Link color="inherit" href={book.link} target="_blank" rel="noopener">
+          <Button size="small" color="primary">
+            View
+          </Button>
+        </Link>
+        <Button size="small" color="primary">
+            Save
+        </Button>
+      </CardActions>
+    )
+  }
+}
 
 export default function BookCard(props) {
-    const {book} = props;
+    const { book, isSaved } = props;
     const classes = useStyles();
 
     return (
@@ -48,14 +79,7 @@ export default function BookCard(props) {
                     {book.description}
                 </Typography>
                 </CardContent>
-                <CardActions>
-                <Button size="small" color="primary">
-                    View
-                </Button>
-                <Button size="small" color="primary">
-                    Edit
-                </Button>
-                </CardActions>
+                { conditionalActionRendering(isSaved, book) }
             </Card>
         </Grid>
     );

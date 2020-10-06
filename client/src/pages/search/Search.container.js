@@ -17,6 +17,12 @@ function SearchContainer() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    //event handlers
+    const handleRemoveBook = (bookId) => (e) => {
+        e.preventDefault();
+        //dispatch action to remove book by ID
+    }
+
     return <HomePage books={books}/>;
 }
 
