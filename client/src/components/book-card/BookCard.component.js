@@ -27,16 +27,16 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const conditionalActionRendering = (isSaved, book) => {
+const conditionalActionRendering = (isSaved, book, handleRemoveBook, handleSaveBook) => {
   if(isSaved){
     return (
       <CardActions>
         <Link color="inherit" href={book.link} target="_blank" rel="noopener">
           <Button size="small" color="primary">
-            View
+            View Info
           </Button>
         </Link>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={handleRemoveBook(book._id)}>
             Remove
         </Button>
       </CardActions>
@@ -47,10 +47,10 @@ const conditionalActionRendering = (isSaved, book) => {
       <CardActions>
         <Link color="inherit" href={book.link} target="_blank" rel="noopener">
           <Button size="small" color="primary">
-            View
+            View Info
           </Button>
         </Link>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={handleSaveBook(book.id)}>
             Save
         </Button>
       </CardActions>
@@ -59,7 +59,7 @@ const conditionalActionRendering = (isSaved, book) => {
 }
 
 export default function BookCard(props) {
-    const { book, isSaved } = props;
+    const { book, isSaved, handleRemoveBook, handleSaveBook } = props;
     const classes = useStyles();
 
     return (
@@ -75,11 +75,11 @@ export default function BookCard(props) {
                 <Typography gutterBottom variant="h5" component="h2">
                     {book.title}
                 </Typography>
-                <Typography>
+                {/* <Typography>
                     {book.description}
-                </Typography>
+                </Typography> */}
                 </CardContent>
-                { conditionalActionRendering(isSaved, book) }
+                { conditionalActionRendering(isSaved, book, handleRemoveBook, handleSaveBook) }
             </Card>
         </Grid>
     );

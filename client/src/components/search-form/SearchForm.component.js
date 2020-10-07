@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -12,13 +12,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ComposedTextField() {
-  const [name, setName] = React.useState();
+export default function SearchFormComponent(props) {
   const classes = useStyles();
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleChange = (event) => {
-    setName(event.target.value);
-  };
+  const handleInputChange = (e) => {
+    //set state
+    e.preventDefault();
+    e.stopPropagation();
+    setSearchQuery(e.target.value);
+  }
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -30,10 +33,10 @@ export default function ComposedTextField() {
             helperText="Type a book title and click Search..."
             fullWidth
             margin="normal"
-            value={name}
-            onChange={handleChange}
+            //value={props.searchQuery}
+            onChange={handleInputChange}
             />
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={props.handleSearchBook(searchQuery)}>
                 Search
             </Button>
         </div>

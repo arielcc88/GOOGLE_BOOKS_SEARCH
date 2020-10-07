@@ -39,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
+  navLink: {
+    padding: '20px'
+  },
+  noBooks: {
+    marginTop: theme.spacing(4),
+  },
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
@@ -59,6 +65,29 @@ function Copyright() {
   );
 }
 
+function RenderBookCard(books, displayRecentSaved, handleRemoveBook, handleSaveBook){
+  const classes = useStyles();
+  if(books.length > 0){
+    if(displayRecentSaved){
+      return (getLastBooks(books, 5).map((book, index) => (
+        <BookCard key={index} book={book} isSaved={displayRecentSaved} handleRemoveBook={handleRemoveBook} handleSaveBook={handleSaveBook} />
+      )))
+    }
+    else{
+      return (books.map((book, index) => (
+        <BookCard key={index} book={book} isSaved={displayRecentSaved} handleRemoveBook={handleRemoveBook} handleSaveBook={handleSaveBook} />
+      )))
+    }
+  }
+  else
+  {
+    return (
+      <Typography className={classes.noBooks} component="p" align="left" color="textSecondary">
+        There are no saved books at the moment
+      </Typography>
+    )
+  }
+}
 
 
 export default function HomePage(props) {
@@ -75,6 +104,9 @@ export default function HomePage(props) {
               Google Books Search
             </Typography>
           {/* </Link> */}
+            <Typography component="p" color="inherit" noWrap>
+              <Link className={classes.navLink} color="inherit" href="/saved">Saved Books</Link>
+            </Typography>
         </Toolbar>
       </AppBar>
       <main>
@@ -91,30 +123,29 @@ export default function HomePage(props) {
             </Typography>
             <Grid container spacing={5} justify="center">
               <Grid item xs={12}>
-                <SearchForm />
+                <SearchForm 
+                  handleSearchBook={props.handleSearchBook} 
+                />
               </Grid>
           </Grid>
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
-          <Typography component="h1" variant="h4" align="left" color="textSecondary" gutterBottom>
-            Recently Saved Books
-          </Typography>
+          {props.displayRecentSaved ? 
+            (<Typography component="h1" variant="h4" align="left" color="textSecondary" gutterBottom>
+              Recently Saved Books
+            </Typography>) :
+            <Typography component="h1" variant="h4" align="left" color="textSecondary" gutterBottom>
+              Search Results
+            </Typography>
+          }
           <Grid container spacing={4}>
-            {getLastBooks(props.books, 5).map((book, index) => (
-              <BookCard key={index} book={book} isSaved={true}/>
-            ))}
+            {RenderBookCard(props.books, props.displayRecentSaved, props.handleRemoveBook, props.handleSaveBook)}
           </Grid>
         </Container>
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
-        </Typography>
         <Copyright />
       </footer>
       {/* End footer */}

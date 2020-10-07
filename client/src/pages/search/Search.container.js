@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import HomePage from "./Search.view";
-import { getAllSavedBooks } from "../../actions";
+import { getAllSavedBooks, removeBookById, searchGAPIBook, addBookAttempt } from "../../actions";
 
 
 function SearchContainer() {
     const dispatch = useDispatch();
     // Loading State
-    const [books] = useSelector((appState) => [
-        appState.books
+    const [books, displayRecentSaved] = useSelector((appState) => [
+        appState.books,
+        appState.displayRecentSaved
     ]);
     //useEffect
     useEffect(() => {
@@ -20,10 +21,30 @@ function SearchContainer() {
     //event handlers
     const handleRemoveBook = (bookId) => (e) => {
         e.preventDefault();
-        //dispatch action to remove book by ID
+        dispatch(removeBookById(bookId));
     }
 
-    return <HomePage books={books}/>;
+    const handleSearchBook = (searchQuery) => (e) => {
+        e.preventDefault();
+        dispatch(searchGAPIBook(searchQuery));
+    }
+
+    const handleSaveBook = (bookId) => (e) => {
+        e.preventDefault();
+        const matchBook = books.filter((elem) => {
+            return elem.id === bookId
+        })
+        dispatch(addBookAttempt(matchBook[0]));
+    }
+    
+    return (
+    <HomePage 
+        books={books} 
+        handleRemoveBook={handleRemoveBook} 
+        handleSearchBook={handleSearchBook}
+        displayRecentSaved={displayRecentSaved}
+        handleSaveBook={handleSaveBook}
+    />);
 }
 
 export default SearchContainer;

@@ -8,6 +8,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/" component={Pages.SearchBooks} />
+        <Route exact path="/saved" component={Pages.SavedBooks} />
       </Switch>
     </div>
   );
