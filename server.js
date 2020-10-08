@@ -9,7 +9,7 @@ const apiRouter = require("./routes/api_router");
 // DB connection using mongoose
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost/googlebooks", 
-    { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true }
+    { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true, useCreateIndex: true }
 );
 
 // Seeding DB for development.
