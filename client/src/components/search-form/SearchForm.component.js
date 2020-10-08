@@ -24,7 +24,7 @@ export default function SearchFormComponent(props) {
   }
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off" onSubmit={props.handleSubmit(searchQuery)}>
         <div className={classes.root}>
             <TextField
             id="b-title"

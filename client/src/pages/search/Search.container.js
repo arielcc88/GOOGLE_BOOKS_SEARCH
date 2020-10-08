@@ -36,6 +36,12 @@ function SearchContainer() {
         })
         dispatch(addBookAttempt(matchBook[0]));
     }
+
+    const handleSubmit = (searchQuery) => (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dispatch(searchGAPIBook(searchQuery));
+    }
     
     return (
     <HomePage 
@@ -44,6 +50,7 @@ function SearchContainer() {
         handleSearchBook={handleSearchBook}
         displayRecentSaved={displayRecentSaved}
         handleSaveBook={handleSaveBook}
+        handleSubmit={handleSubmit}
     />);
 }
 

@@ -9,7 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import BookCard from "../../components/book-card/BookCard.component";
-import { getLastBooks } from "../../utils/helpers";
 
 // CSS for Search view home page
 const useStyles = makeStyles((theme) => ({
@@ -92,7 +91,7 @@ export default function SavedPage(props) {
           </Typography>
           <Grid container spacing={4}>
             { props.books.length > 0 ? 
-            getLastBooks(props.books, 5).map((book, index) => (
+            props.books.map((book, index) => (
               <BookCard key={index} book={book} isSaved={true} handleRemoveBook={props.handleRemoveBook}/>
             )) : 
             <Typography className={classes.noBooks} component="p" align="left" color="textSecondary">

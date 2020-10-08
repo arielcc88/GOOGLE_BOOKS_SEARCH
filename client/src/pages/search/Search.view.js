@@ -125,6 +125,7 @@ export default function HomePage(props) {
               <Grid item xs={12}>
                 <SearchForm 
                   handleSearchBook={props.handleSearchBook} 
+                  handleSubmit={props.handleSubmit}
                 />
               </Grid>
           </Grid>
