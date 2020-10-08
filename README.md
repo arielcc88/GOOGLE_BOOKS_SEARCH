@@ -54,7 +54,7 @@ Clone this repo and follow these steps:
 
 ## Deployed App (Heroku + Mongo Atlas)
 
-* [Heroku Link]()
+* [Heroku Link](https://gbook-searchapp.herokuapp.com/)
 
 App Home Page:
 - The App's Home Page allows user to search books, and it also displays last 5 saved books.
